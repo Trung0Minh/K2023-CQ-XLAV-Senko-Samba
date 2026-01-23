@@ -8,6 +8,17 @@
 
 ---
 
+## 📂 Dữ liệu & Pre-trained Weights
+
+### Pre-trained Weights
+*   **VMamba-S Backbone:** [[Baidu]](https://pan.baidu.com/s/1SaEV237VCzSEn558gEBiXg) (Mã: zsxa)
+*   **Samba Full Weights:** [[Baidu]](https://pan.baidu.com/s/15787DVEmW59ftztopv-yMg) (Mã: bkvw)
+
+### Datasets
+*   **RGB SOD:** DUTS, ECSSD, HKU-IS, PASCAL-S, DUT-O. [[Baidu]](https://pan.baidu.com/s/1oljb1_kkUH7rhWZCy8ic4g) (Mã: x7kn)
+
+---
+
 ## 🛠 Cài đặt môi trường
 
 ### 1. Cài đặt PyTorch & CUDA
@@ -25,7 +36,35 @@ Cài đặt các thư viện còn lại:
 pip install -r requirements.txt
 ```
 
-### Training
+---
+
+## 📂 Chuẩn bị dữ liệu
+
+Trước khi chạy huấn luyện hoặc kiểm thử, cần tự chuẩn bị thư mục `data` trong thư mục gốc của dự án.
+
+1.  **Tải xuống:** Tải xuống các bộ dữ liệu từ liên kết Baidu ở trên.
+2.  **Giải nén và Sắp xếp:** Sau khi tải về, hãy giải nén và đặt chúng vào thư mục `data` theo cấu trúc sau:
+    ```text
+    K2023-CQ-XLAV-Senko-Samba/
+    ├── data/
+    │   ├── DUTS-TR/
+    │   ├── DUTS-TE/
+    │   ├── DUT-OMRON/
+    │   ├── ECSSD/
+    │   ├── HKU-IS/
+    │   ├── PASCAL-S/
+    │   └── SOD/
+    ├── checkpoints/
+    ├── models/
+    └── ...
+    ```
+    *Lưu ý: Thư mục `results` sẽ được tự động tạo ra khi bạn chạy script test.*
+
+---
+
+## 🚀 Chạy chương trình
+
+### 1. Training
 
 ```bash
 python train_rgb.py
@@ -69,17 +108,6 @@ Thay vì cắt chính giữa bức ảnh một cách mù quáng, công cụ này
     ```
 
 Công cụ sẽ hiển thị một lưới so sánh giữa: **Ảnh gốc vs. Cắt chính giữa (Center Crop) vs. Cắt theo Saliency (Smart Crop)**.
-
----
-
-## 📂 Dữ liệu & Pre-trained Weights
-
-### Pre-trained Weights
-*   **VMamba-S Backbone:** [[Baidu]](https://pan.baidu.com/s/1SaEV237VCzSEn558gEBiXg) (Mã: zsxa)
-*   **Samba Full Weights:** [[Baidu]](https://pan.baidu.com/s/15787DVEmW59ftztopv-yMg) (Mã: bkvw)
-
-### Datasets
-*   **RGB SOD:** DUTS, ECSSD, HKU-IS, PASCAL-S, DUT-O. [[Baidu]](https://pan.baidu.com/s/1oljb1_kkUH7rhWZCy8ic4g) (Mã: x7kn)
 
 ---
 
