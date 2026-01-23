@@ -25,26 +25,12 @@ Cài đặt các thư viện còn lại thông qua file requirements:
 pip install -r requirements.txt
 ```
 
-### 3. Biên dịch Selective Scan (Bắt buộc cho Mamba)
-Cơ chế cốt lõi của Mamba dựa trên một CUDA kernel tùy chỉnh. Bạn bắt buộc phải biên dịch nó:
+### Training
 
 ```bash
-cd models/encoders/selective_scan
-pip install .
+python train_rgb.py
 ```
 
----
-
-## 🚀 Hướng dẫn Sử dụng
-
-### 1. Huấn luyện (Train)
-Để huấn luyện mô hình trên dữ liệu RGB SOD:
-
-```bash
-python train_rgb.py --epoch 100 --batch_size 16 --save_path ./checkpoints/
-```
-*   Điều chỉnh `--epoch` và `--batch_size` tùy ý.
-*   Đảm bảo dữ liệu huấn luyện nằm đúng trong thư mục `data/`.
 
 ### 2. Kiểm thử (Test)
 Để tạo ra các bản đồ nổi bật (saliency maps) từ checkpoint đã huấn luyện:
