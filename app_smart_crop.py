@@ -71,7 +71,7 @@ def add_label(image, text):
 def main():
     parser = argparse.ArgumentParser(description="Generate Smart Crop comparison grid.")
     parser.add_argument('--img_dir', type=str, required=True, help='Path to original RGB images')
-    parser.add_argument('--deep_dir', type=str, required=True, help='Path to Deep Learning saliency maps')
+    parser.add_argument('--saliency_dir', type=str, required=True, help='Path to Deep Learning saliency maps')
     parser.add_argument('--output_path', type=str, default='crop_comparison.jpg', help='Output filename')
     parser.add_argument('--crop_size', type=int, default=300, help='Size of the square crop (pixels)')
     parser.add_argument('--limit', type=int, default=10, help='Number of rows to generate')
@@ -108,9 +108,9 @@ def main():
 
         # --- B. Samba Smart Crop ---
         # Try to find corresponding map (png or jpg)
-        samba_path = os.path.join(args.deep_dir, name_no_ext + '.png')
+        samba_path = os.path.join(args.saliency_dir, name_no_ext + '.png')
         if not os.path.exists(samba_path):
-             samba_path = os.path.join(args.deep_dir, filename) # Try original name
+             samba_path = os.path.join(args.saliency_dir, filename) # Try original name
         
         if os.path.exists(samba_path):
             samba_map = cv2.imread(samba_path, cv2.IMREAD_GRAYSCALE)

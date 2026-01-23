@@ -2,16 +2,16 @@
 
 [[PDF]](https://www.kerenfu.top/sources/CVPR2025_Samba.pdf) | [[Original Repo]](https://github.com/Jia-hao999/Samba)
 
-**Lưu ý:** Dự án này được tham khảo từ mã nguồn gốc của Samba (CVPR 2025) và đã được tái cấu trúc (refactor) để tập trung chuyên biệt cho tác vụ **Phát hiện đối tượng nổi bật trên ảnh RGB (RGB Salient Object Detection)**.
+**Lưu ý:** Dự án này được tham khảo từ mã nguồn gốc của Samba (CVPR 2025) và đã được refactor để tập trung chuyên biệt cho tác vụ **RGB SOD**.
 
 **Samba** là một framework thống nhất mới dựa trên kiến trúc Mamba thuần túy để xử lý linh hoạt các tác vụ SOD tổng quát. Nó giới thiệu khối Saliency-Guided Mamba Block (SGMB) và phương pháp Context-Aware Upsampling (CAU) để tăng cường khả năng biểu diễn và căn chỉnh đặc trưng.
 
 ---
 
-## 🛠 Cài đặt Môi trường
+## 🛠 Cài đặt môi trường
 
 ### 1. Cài đặt PyTorch & CUDA
-Dự án này yêu cầu **PyTorch 1.13.1** và **CUDA 11.7** (hoặc các phiên bản tương thích). Caanf cài đặt chúng trước tiên tùy theo cấu hình máy:
+Dự án này yêu cầu **PyTorch 1.13.1** và **CUDA 11.7** (hoặc các phiên bản tương thích). Cần cài đặt chúng trước tiên tùy theo cấu hình máy:
 
 ```bash
 # Ví dụ cho Linux với CUDA 11.7
@@ -19,7 +19,7 @@ pip install torch==1.13.1+cu117 torchvision==0.14.1+cu117 --extra-index-url http
 ```
 
 ### 2. Cài đặt các thư viện Python khác
-Cài đặt các thư viện còn lại thông qua file requirements:
+Cài đặt các thư viện còn lại:
 
 ```bash
 pip install -r requirements.txt
@@ -31,8 +31,7 @@ pip install -r requirements.txt
 python train_rgb.py
 ```
 
-
-### 2. Kiểm thử (Test)
+### 2. Test
 Để tạo ra các bản đồ nổi bật (saliency maps) từ checkpoint đã huấn luyện:
 
 ```bash
@@ -43,13 +42,14 @@ python test_rgb.py --model_path ./checkpoints/Samba_rgb.pth --testsavefold ./res
     python test_rgb.py --source_path ./original --testsavefold ./results --model_path ./checkpoints/Samba_rgb.pth
     ```
 
-### 3. Đánh giá (Evaluation)
+### 3. Evaluation
 Để đánh giá chất lượng bản đồ sinh ra so với Ground Truth (GT):
 
 ```bash
-cd evaluation
-python main.py
+python eval.py
 ```
+
+*Cả ba đều hỗ trợ các bộ tham số tùy chỉnh. Có thể tham khảo thêm trong mã nguồn gốc.*
 
 ---
 
@@ -59,7 +59,7 @@ Nhóm cung cấp một ứng dụng thực tế để chứng minh sức mạnh 
 Thay vì cắt chính giữa bức ảnh một cách mù quáng, công cụ này sử dụng Saliency Map để tự động căn chỉnh khung hình vào đối tượng quan trọng nhất.
 
 ### Cách chạy:
-1.  **Tạo Saliency Maps:** Trước tiên, chạy `test_rgb.py` cho thư mục ảnh gốc của bạn (xem mục "Kiểm thử" ở trên).
+1.  **Tạo Saliency Maps:** Trước tiên, chạy `test_rgb.py` cho thư mục ảnh gốc bất kì (xem mục **Test** ở trên).
     ```bash
     python test_rgb.py --source_path ./original --testsavefold ./results
     ```
