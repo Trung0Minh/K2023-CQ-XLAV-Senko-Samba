@@ -79,7 +79,7 @@ Công cụ sẽ hiển thị một lưới so sánh giữa: **Ảnh gốc vs. C�
 *   **Samba Full Weights:** [[Baidu]](https://pan.baidu.com/s/15787DVEmW59ftztopv-yMg) (Mã: bkvw)
 
 ### Datasets
-*   **RGB SOD:** DUTS, ECSSD, HKU-IS, PASCAL-S, DUT-O. [[Link]](https://pan.baidu.com/s/1oljb1_kkUH7rhWZCy8ic4g) (Mã: x7kn)
+*   **RGB SOD:** DUTS, ECSSD, HKU-IS, PASCAL-S, DUT-O. [[Baidu]](https://pan.baidu.com/s/1oljb1_kkUH7rhWZCy8ic4g) (Mã: x7kn)
 
 ---
 
