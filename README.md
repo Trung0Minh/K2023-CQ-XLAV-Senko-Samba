@@ -2,35 +2,37 @@
 
 [[PDF]](https://www.kerenfu.top/sources/CVPR2025_Samba.pdf) | [[Original Repo]](https://github.com/Jia-hao999/Samba)
 
-**Lưu ý:** Dự án này được tham khảo từ mã nguồn gốc của Samba (CVPR 2025) và đã được refactor để tập trung chuyên biệt cho tác vụ **RGB SOD**.
+**Note:** This project is referenced from the original source code of Samba (CVPR 2025) and has been refactored to focus specifically on the **RGB SOD** task.
 
-**Samba** là một framework thống nhất mới dựa trên kiến trúc Mamba thuần túy để xử lý linh hoạt các tác vụ SOD tổng quát. Nó giới thiệu khối Saliency-Guided Mamba Block (SGMB) và phương pháp Context-Aware Upsampling (CAU) để tăng cường khả năng biểu diễn và căn chỉnh đặc trưng.
+**Samba** is a new unified framework based on pure Mamba architecture to flexibly handle general SOD tasks. It introduces the Saliency-Guided Mamba Block (SGMB) and Context-Aware Upsampling (CAU) method to enhance feature representation and alignment.
 
 ---
 
-## 📂 Dữ liệu & Pre-trained Weights
+## 📂 Data & Pre-trained Weights
 
 ### Pre-trained Weights
-*   **VMamba-S Backbone:** [[Baidu]](https://pan.baidu.com/s/1SaEV237VCzSEn558gEBiXg) (Mã: zsxa)
-*   **Samba Full Weights:** [[Baidu]](https://pan.baidu.com/s/15787DVEmW59ftztopv-yMg) (Mã: bkvw)
+*   **VMamba-S Backbone:** [[Baidu]](https://pan.baidu.com/s/1SaEV237VCzSEn558gEBiXg) (Code: zsxa)
+*   **Samba Full Weights:** [[Baidu]](https://pan.baidu.com/s/15787DVEmW59ftztopv-yMg) (Code: bkvw)
 
 ### Datasets
-*   **RGB SOD:** DUTS, ECSSD, HKU-IS, PASCAL-S, DUT-O. [[Baidu]](https://pan.baidu.com/s/1oljb1_kkUH7rhWZCy8ic4g) (Mã: x7kn)
+*   **RGB SOD:** DUTS, ECSSD, HKU-IS, PASCAL-S, DUT-O. [[Baidu]](https://pan.baidu.com/s/1oljb1_kkUH7rhWZCy8ic4g) (Code: x7kn)
+
+Or you can download via the following Drive link [[Google Drive]](https://drive.google.com/drive/folders/1gvHI9cKB7koM9c9RyNpTYuTWPtMLf0lD?usp=sharing)
 
 ---
 
-## 🛠 Cài đặt môi trường
+## 🛠 Environment Setup
 
-### 1. Cài đặt PyTorch & CUDA
-Dự án này yêu cầu **PyTorch 1.13.1** và **CUDA 11.7** (hoặc các phiên bản tương thích). Cần cài đặt chúng trước tiên tùy theo cấu hình máy:
+### 1. Install PyTorch & CUDA
+This project requires **PyTorch 1.13.1** and **CUDA 11.7** (or compatible versions). You need to install them first depending on your machine configuration:
 
 ```bash
-# Ví dụ cho Linux với CUDA 11.7
+# Example for Linux with CUDA 11.7
 pip install torch==1.13.1+cu117 torchvision==0.14.1+cu117 --extra-index-url https://download.pytorch.org/whl/cu117
 ```
 
-### 2. Cài đặt các thư viện Python khác
-Cài đặt các thư viện còn lại:
+### 2. Install other Python libraries
+Install the remaining libraries:
 
 ```bash
 pip install -r requirements.txt
@@ -38,12 +40,12 @@ pip install -r requirements.txt
 
 ---
 
-## 📂 Chuẩn bị dữ liệu
+## 📂 Data Preparation
 
-Trước khi chạy huấn luyện hoặc kiểm thử, cần tự chuẩn bị thư mục `data` trong thư mục gốc của dự án.
+Before running training or testing, you need to manually prepare the `data` folder in the project root directory.
 
-1.  **Tải xuống:** Tải xuống các bộ dữ liệu từ liên kết Baidu ở trên.
-2.  **Giải nén và Sắp xếp:** Sau khi tải về, hãy giải nén và đặt chúng vào thư mục `data` theo cấu trúc sau:
+1.  **Download:** Download the datasets from the Baidu link above.
+2.  **Unzip and Organize:** After downloading, unzip and place them in the `data` folder according to the following structure:
     ```text
     K2023-CQ-XLAV-Senko-Samba/
     ├── data/
@@ -58,11 +60,11 @@ Trước khi chạy huấn luyện hoặc kiểm thử, cần tự chuẩn bị 
     ├── models/
     └── ...
     ```
-    *Lưu ý: Thư mục `results` sẽ được tự động tạo ra khi bạn chạy script test.*
+    *Note: The `results` folder will be automatically created when you run the test script.*
 
 ---
 
-## 🚀 Chạy chương trình
+## 🚀 Running the Program
 
 ### 1. Training
 
@@ -71,43 +73,43 @@ python train_rgb.py
 ```
 
 ### 2. Test
-Để tạo ra các bản đồ nổi bật (saliency maps) từ checkpoint đã huấn luyện:
+To generate saliency maps from trained checkpoints:
 
 ```bash
 python test_rgb.py --model_path ./checkpoints/Samba_rgb.pth --testsavefold ./results
 ```
-*   **Chạy với ảnh tùy chỉnh:** Để chạy test trên một thư mục ảnh bất kỳ (ví dụ `./original`), sử dụng tham số `--source_path`:
+*   **Run with custom images:** To run tests on any image folder (e.g. `./original`), use the `--source_path` parameter:
     ```bash
     python test_rgb.py --source_path ./original --testsavefold ./results --model_path ./checkpoints/Samba_rgb.pth
     ```
 
 ### 3. Evaluation
-Để đánh giá chất lượng bản đồ sinh ra so với Ground Truth (GT):
+To evaluate the quality of the generated maps against the Ground Truth (GT):
 
 ```bash
 python eval.py
 ```
 
-*Cả ba đều hỗ trợ các bộ tham số tùy chỉnh. Có thể tham khảo thêm trong mã nguồn gốc.*
+*All three support custom parameter sets. You can refer to the original source code for more details.*
 
 ---
 
-## 🖼️ Ứng dụng thực tế: Cắt ảnh thông minh
+## 🖼️ Real-world Application: Smart Image Cropping
 
-Nhóm cung cấp một ứng dụng thực tế để chứng minh sức mạnh của Saliency Map: **Cắt ảnh thông minh dựa trên nội dung**.
-Thay vì cắt chính giữa bức ảnh một cách mù quáng, công cụ này sử dụng Saliency Map để tự động căn chỉnh khung hình vào đối tượng quan trọng nhất.
+The team provides a real-world application to demonstrate the power of Saliency Map: **Content-Aware Smart Image Cropping**.
+Instead of blindly cropping the center of the image, this tool uses the Saliency Map to automatically align the frame to the most important object.
 
-### Cách chạy:
-1.  **Tạo Saliency Maps:** Trước tiên, chạy `test_rgb.py` cho thư mục ảnh gốc bất kì (xem mục **Test** ở trên).
+### How to run:
+1.  **Generate Saliency Maps:** First, run `test_rgb.py` for any original image folder (see **Test** section above).
     ```bash
     python test_rgb.py --source_path ./original --testsavefold ./results
     ```
-2.  **Chạy Ứng dụng:** Chạy script ứng dụng để xem so sánh trực quan.
+2.  **Run Application:** Run the application script to see the visual comparison.
     ```bash
     python app_smart_crop.py --img_dir ./original --saliency_dir ./results/original
     ```
 
-Công cụ sẽ hiển thị một lưới so sánh giữa: **Ảnh gốc vs. Cắt chính giữa (Center Crop) vs. Cắt theo Saliency (Smart Crop)**.
+The tool will output a comparison grid between: **Original Image vs. Center Crop vs. Smart Crop (Saliency-based)**.
 
 ---
 
