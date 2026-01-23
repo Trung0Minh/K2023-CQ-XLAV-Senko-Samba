@@ -53,9 +53,9 @@ python eval.py
 
 ---
 
-## 🖼️ Ứng dụng Thực tế: Cắt ảnh Thông minh
+## 🖼️ Ứng dụng thực tế: Cắt ảnh thông minh
 
-Nhóm cung cấp một ứng dụng thực tế để chứng minh sức mạnh của Saliency Map: **Cắt ảnh Thông minh dựa trên nội dung**.
+Nhóm cung cấp một ứng dụng thực tế để chứng minh sức mạnh của Saliency Map: **Cắt ảnh thông minh dựa trên nội dung**.
 Thay vì cắt chính giữa bức ảnh một cách mù quáng, công cụ này sử dụng Saliency Map để tự động căn chỉnh khung hình vào đối tượng quan trọng nhất.
 
 ### Cách chạy:
@@ -65,7 +65,7 @@ Thay vì cắt chính giữa bức ảnh một cách mù quáng, công cụ này
     ```
 2.  **Chạy Ứng dụng:** Chạy script ứng dụng để xem so sánh trực quan.
     ```bash
-    python app_smart_crop.py --img_dir ./original --deep_dir ./results/original
+    python app_smart_crop.py --img_dir ./original --saliency_dir ./results/original
     ```
 
 Công cụ sẽ hiển thị một lưới so sánh giữa: **Ảnh gốc vs. Cắt chính giữa (Center Crop) vs. Cắt theo Saliency (Smart Crop)**.
